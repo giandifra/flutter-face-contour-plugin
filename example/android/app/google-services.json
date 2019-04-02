@@ -1,0 +1,35 @@
+{
+  "project_info": {
+    "project_number": "955379327667",
+    "firebase_url": "https://face-contour-plugin.firebaseio.com",
+    "project_id": "face-contour-plugin",
+    "storage_bucket": "face-contour-plugin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955379327667:android:0a000a6f704fbc15",
+        "android_client_info": {
+          "package_name": "com.gianmarcodifrancesco.firebase_face_contour_example"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxzE_DMbv8wtKupxjvCPGJd8Umf2-dlLo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955379327667-jm401ghmn149gk9f8k1qsa7i60119prt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
