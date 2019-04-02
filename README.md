@@ -1,5 +1,9 @@
 # Flutter Face Contour Detection Plugin
 
+[![pub package](https://img.shields.io/pub/v/firebase_face_contour.svg)](https://pub.dartlang.org/packages/firebase_face_contour/)
+
+A Flutter plugin to implement Firebase Face Contour Detection of Firebase ML Vision
+
 <img src="https://github.com/giandifra/flutter-face-contour-detection/blob/master/long_preview.gif" data-canonical-src="https://github.com/giandifra/flutter-face-contour-detection/blob/master/long_preview.gif" width="200" height="400" />
 
 Only for Android (for now)
