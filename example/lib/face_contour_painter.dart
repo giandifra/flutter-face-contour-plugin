@@ -18,24 +18,7 @@ class FaceContourPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paintRectStyle = Paint()
-      ..color = Colors.red
-      ..strokeWidth = 5.0
-      ..style = PaintingStyle.stroke;
-
-    final paint = Paint()..color = Colors.yellow;
-
     for (var i = 0; i < faces.length; i++) {
-
-      //Scale rect to image size
-      final rect = _scaleRect(
-        rect: faces[i].boundingBox,
-        imageSize: imageSize,
-        widgetSize: size,
-      );
-
-//      canvas.drawRect(rect, paintRectStyle);
-
       final List<Offset> facePoints =
           faces[i].getContour(FaceContourType.face).points;
       final List<Offset> lowerLipBottom =
@@ -63,8 +46,9 @@ class FaceContourPainter extends CustomPainter {
       final List<Offset> noseBridge =
           faces[i].getContour(FaceContourType.noseBridge).points;
 
-
-      final lipPaint = Paint()..strokeWidth = 3.0..color = Colors.pink;
+      final lipPaint = Paint()
+        ..strokeWidth = 3.0
+        ..color = Colors.pink;
 
       canvas.drawPoints(
           PointMode.polygon,
@@ -76,7 +60,7 @@ class FaceContourPainter extends CustomPainter {
           PointMode.polygon,
           _scalePoints(
               offsets: lowerLipTop, imageSize: imageSize, widgetSize: size),
-          lipPaint );
+          lipPaint);
 
       canvas.drawPoints(
           PointMode.polygon,
@@ -172,20 +156,6 @@ class FaceContourPainter extends CustomPainter {
     }
   }
 
-  Offset _scalePoint({
-    Offset offset,
-    @required Size imageSize,
-    @required Size widgetSize,
-  }) {
-    final double scaleX = widgetSize.width / imageSize.width;
-    final double scaleY = widgetSize.height / imageSize.height;
-
-    if(cameraLensDirection == CameraLensDirection.front){
-      return Offset(widgetSize.width - (offset.dx * scaleX), offset.dy * scaleY);
-    }
-    return Offset(offset.dx * scaleX, offset.dy * scaleY);
-  }
-
   List<Offset> _scalePoints({
     List<Offset> offsets,
     @required Size imageSize,
@@ -194,9 +164,10 @@ class FaceContourPainter extends CustomPainter {
     final double scaleX = widgetSize.width / imageSize.width;
     final double scaleY = widgetSize.height / imageSize.height;
 
-    if(cameraLensDirection == CameraLensDirection.front){
+    if (cameraLensDirection == CameraLensDirection.front) {
       return offsets
-          .map((offset) => Offset(widgetSize.width - (offset.dx * scaleX), offset.dy * scaleY))
+          .map((offset) => Offset(
+              widgetSize.width - (offset.dx * scaleX), offset.dy * scaleY))
           .toList();
     }
     return offsets
@@ -204,36 +175,8 @@ class FaceContourPainter extends CustomPainter {
         .toList();
   }
 
-  Rect _scaleRect({
-    @required Rect rect,
-    @required Size imageSize,
-    @required Size widgetSize,
-  }) {
-    final double scaleX = widgetSize.width / imageSize.width;
-    final double scaleY = widgetSize.height / imageSize.height;
-
-    if(cameraLensDirection == CameraLensDirection.front){
-      print("qui");
-      return Rect.fromLTRB(
-        widgetSize.width - rect.left.toDouble() * scaleX,
-        rect.top.toDouble() * scaleY,
-        widgetSize.width - rect.right.toDouble() * scaleX,
-        rect.bottom.toDouble() * scaleY,
-      );
-    }
-
-    return Rect.fromLTRB(
-      rect.left.toDouble() * scaleX,
-      rect.top.toDouble() * scaleY,
-      rect.right.toDouble() * scaleX,
-      rect.bottom.toDouble() * scaleY,
-    );
-  }
-
-
   @override
   bool shouldRepaint(FaceContourPainter oldDelegate) {
     return imageSize != oldDelegate.imageSize || faces != oldDelegate.faces;
   }
 }
-
